@@ -1,6 +1,7 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import React from 'react';
+import TableList from '../../pages/list/TableList';
 
 import styles from './index.module.css'
 
@@ -36,7 +37,8 @@ const LayoutApp: React.FC = () => (
       <Header className={styles['site-layout-sub-header-background']} style={{ padding: 0 }} />
       <Content style={{ margin: '24px 16px 0' }}>
         <div className={styles['site-layout-background']} style={{ padding: 24, minHeight: '80vh'}}>
-          content
+          <h3>产品列表</h3>
+          <TableList />
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
