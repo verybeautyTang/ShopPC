@@ -24,18 +24,17 @@ const TableList: React.FC = () => {
   },[list])
 
 
+
   // 删除
   const onDelete = (record:DataType) => {
     Modal.confirm({
       title:' 提示',
       content: `是否要删除“${record.name}”这款产品呢？`,
       onOk: async () => {
-        console.log('first')
         const tempData = [...lists];
-        tempData.filter((i) => i.id === record.id)
-        // await dispatch(GetProducts(tempData))
-        dispatch('productList/list', tempData)
-        
+        const data = tempData.filter((i) => i.id !== record.id);
+        dispatch(GetProducts(data))
+        setList(data)
       }
     })
   }
@@ -56,22 +55,21 @@ const TableList: React.FC = () => {
   
   // 创建数据
   const onChange = async (data: DataType, type: DATA_TYPE) => {
-    console.log(data, type)
-    const tempData = [...lists]
+    let tempData = [...lists]
     switch(type) {
       case DATA_TYPE.ADD: 
         tempData.push({...data,id: Math.random().toString(36).slice(-6)})
         break;
       case DATA_TYPE.EDIT:
-        tempData.map((i) => {
-          if( i.id === data.id) {
-            i.name = data.name;
-            i.size = data.size;
-            i.remark = data.remark;
+        tempData.forEach((i,index, arr) => {
+          if(i.id === data.id) {
+            arr[index] = data
           }
         })
+       
     }
      await dispatch(GetProducts(tempData))
+     setList(tempData)
   }
   const columns: ColumnsType<DataType> = [
     {

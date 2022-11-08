@@ -10,9 +10,9 @@ const initialState: ProductListState = {
   list: data,
 }
 
-export const GetProducts = createAsyncThunk("productList/list", async (tempData) => {
-  // const response = await ()
-  return tempData
+export const GetProducts = createAsyncThunk("productList/list", async (list: DataType[]) => {
+
+  return list
 })
 
 const userSlice = createSlice({
@@ -25,9 +25,9 @@ const userSlice = createSlice({
   },
 })
 
-const userReducer = userSlice.reducer
+const productReducer = userSlice.reducer
 
 export const { setProjectAnalyse } = userSlice.actions
 export const ProductSelector = (state: RootState): ProductListState => state.productList
 
-export default userReducer
+export default productReducer

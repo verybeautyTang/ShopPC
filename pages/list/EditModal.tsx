@@ -25,7 +25,8 @@ const CreateModal = forwardRef<RefHandle,RefType>(({onChange},ref) => {
           modalForm.setFieldsValue({
             name: data.name,
             size: data.size,
-            remark: data.remark
+            remark: data.remark,
+            id: data.id
           })
         } 
         setType(type)
@@ -73,6 +74,7 @@ const CreateModal = forwardRef<RefHandle,RefType>(({onChange},ref) => {
       }
     >
       <Form form={modalForm}>
+        <Form.Item name="id" />
         <Form.Item label="产品名称" required name="name" >
           <Input placeholder="请输入运营名称" disabled={type === DATA_TYPE.DETAIL}/>
         </Form.Item>
