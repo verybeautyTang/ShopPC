@@ -13,12 +13,13 @@ export default function Modals(props: IProps) {
   const { title, type, data, onCancel, onSubmit } = props;
 
   const onClick =() => {
-    const name = document.getElementById('name');
-    const remark = document.getElementById('remark');
-    const size = document.getElementById('size');
-    console.log(name, remark, size);
+
+    const name = (document.getElementById('name') as HTMLInputElement);
+    const remark = (document.getElementById('remark')as HTMLInputElement);
+    const size = (document.getElementById('size') as HTMLInputElement);
+
     onSubmit(data, {
-        name: name?.value,
+        name: name ?.value,
         remark: remark?.value,
         size: size?.value,
     })
@@ -42,7 +43,7 @@ export default function Modals(props: IProps) {
                       确定删除{data?.name}这条数据嘛？
                     </p>
                   ) : (
-                    <form className="mb-6" action="/" method="post" id="form">
+                    <form className="mb-6" id="form">
                       <div className="flex flex-col mb-4">
                         <label
                           className="mb-2 uppercase text-grey-darkest"
@@ -111,7 +112,7 @@ export default function Modals(props: IProps) {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
         </>
     </>
   );

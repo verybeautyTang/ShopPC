@@ -1,7 +1,7 @@
 export interface DataType {
   id?: string | number;
   name: string;
-  size: number;
+  size: number | string;
   remark: string;
 }
 export enum DATA_TYPE {
