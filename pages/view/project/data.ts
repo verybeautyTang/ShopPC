@@ -4,10 +4,11 @@ export interface DataType {
   size: number;
   remark: string;
 }
-export enum DATA_TYPE { 
-  EDIT = 'EDIT',
-  ADD = 'ADD',
-  DETAIL = 'DETAIL',
+export enum DATA_TYPE {
+    EDIT = 'EDIT',
+    ADD = 'ADD',
+    DETAIL = 'DETAIL',
+    DELETE = "DELETE"
 }
 export const data:DataType[] = [
   {

@@ -31,7 +31,9 @@
     "@types/react-router-config": "^5.0.6",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-logger": "^3.0.9",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
     "redux-logger": "^3.0.6",
-    "tailwindcss": "^3.2.1"
+    "tailwindcss": "^3.2.3"
   }
 }
