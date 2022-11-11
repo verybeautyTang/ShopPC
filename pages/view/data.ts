@@ -1,5 +1,5 @@
 export interface DataType {
-  id: string | number;
+  id?: string | number;
   name: string;
   size: number;
   remark: string;

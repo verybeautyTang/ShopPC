@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { GetProducts, ProductSelector } from "../../redux/slices/productList";
-import { useAppDispatch } from "../../redux/store";
-import { DataType, DATA_TYPE } from "./data";
-import Modals from "./modal";
+import { GetProducts, ProductSelector } from "./redux/slices/productList";
+import { useAppDispatch } from "./redux/store";
+import { DataType, DATA_TYPE } from "./view/data";
+import Modals from "./view/Modal";
 import Link from 'next/link'
 
 // type EditHandle = React.ElementRef<typeof EditModal>;
@@ -136,31 +136,30 @@ function List() {
                         {i.remark}
                       </td>
 
-                      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <a
+                      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap flex">
+                        <p
                           className="text-green-500 hover:text-green-700"
-                          href="#"
                          
                         >
                           <Link  href={{
               pathname: '/detail',
               query: { name: i.name, size: i.size, remark: i.remark },
             }}>查看</Link>
-                        </a>
-                        <a
+                        </p>
+                        <p
                           className="text-gray-500 hover:text-gray-700 pl-10 pr-10"
-                          href="#"
+                          // href="#"
                           onClick={()=>onEdit(i)}
                         >
                           编辑
-                        </a>
-                        <a
+                        </p>
+                        <p
                           className="text-red-500 hover:text-red-700 "
-                          href="#"
+                          // href="#"
                           onClick={() => onDelete(i)}
                         >
                           删除
-                        </a>
+                        </p>
                       </td>
                     </tr>
                   ))}

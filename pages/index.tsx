@@ -4,7 +4,7 @@ import store from './redux/store';
 
 import type { NextPage } from 'next'
 
-import List from "./view/project"
+import List from "./project"
 const Home = () =>  {
   return (
     <Provider store={store}>

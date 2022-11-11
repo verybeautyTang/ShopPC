@@ -4,9 +4,9 @@ import { DataType, DATA_TYPE } from "./data";
 export interface IProps {
   title: string;
   type: DATA_TYPE;
-  data?: DataType | [];
+  data?: DataType | undefined;
   onCancel:() => void;
-  onSubmit:(data?:DataType, form?: DataType ) => void;
+  onSubmit:(data?:DataType, form?: DataType) => void;
 }
 
 export default function Modals(props: IProps) {
@@ -16,7 +16,8 @@ export default function Modals(props: IProps) {
     const name = document.getElementById('name');
     const remark = document.getElementById('remark');
     const size = document.getElementById('size');
-    onSubmit(data,{
+    console.log(name, remark, size);
+    onSubmit(data, {
         name: name?.value,
         remark: remark?.value,
         size: size?.value,
@@ -32,7 +33,7 @@ export default function Modals(props: IProps) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">{title}</h3>
+                  <h5 className="text-1xl font-semibold">{title}</h5>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
@@ -41,10 +42,10 @@ export default function Modals(props: IProps) {
                       确定删除{data?.name}这条数据嘛？
                     </p>
                   ) : (
-                    <form className="mb-6" action="/" method="post">
+                    <form className="mb-6" action="/" method="post" id="form">
                       <div className="flex flex-col mb-4">
                         <label
-                          className="mb-2 uppercase font-bold text-lg text-grey-darkest"
+                          className="mb-2 uppercase text-grey-darkest"
                         >
                           产品名称
                         </label>
@@ -59,7 +60,7 @@ export default function Modals(props: IProps) {
                       </div>
                       <div className="flex flex-col mb-4">
                         <label
-                          className="mb-2 uppercase font-bold text-lg text-grey-darkest"
+                          className="mb-2 uppercase text-grey-darkest"
                         >
                           产品型号
                         </label>
@@ -74,7 +75,7 @@ export default function Modals(props: IProps) {
                       </div>
                       <div className="flex flex-col mb-4">
                         <label
-                          className="mb-2 uppercase font-bold text-lg text-grey-darkest"
+                          className="mb-2 uppercase text-grey-darkest"
                         >
                          产品说明
                         </label>

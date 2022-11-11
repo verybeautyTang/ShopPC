@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { RootState } from "../store"
-import {data, DataType} from '../../view/project/data'
+import {data, DataType} from '../../view/data'
 
 export type ProductListState = {
   list: DataType[]
