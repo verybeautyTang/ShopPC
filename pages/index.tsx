@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { GetProducts, ProductSelector } from "../redux/slices/productList";
 import { useAppDispatch } from "../redux/store";
-import { DataType, DATA_TYPE } from "../view/data";
-import Modals from "../view/Modal";
+import { DataType, DATA_TYPE } from "../components/data";
+import Modals from "../components/Modal";
 import Link from 'next/link'
 interface EditHandle {
   title: string;
