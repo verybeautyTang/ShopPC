@@ -11,7 +11,7 @@ import Link from 'next/link'
 interface EditHandle {
   title: string;
   type: DATA_TYPE;
-  data?: DataType | [];
+  data?: DataType | undefined ;
 }
 
 function List() {
@@ -19,7 +19,7 @@ function List() {
   const createRef = useRef<EditHandle>({
     title: "",
     type: DATA_TYPE.ADD,
-    data: [],
+    data: undefined,
   });
 
   const { list } = useSelector(ProductSelector);
@@ -45,7 +45,7 @@ function List() {
   const onAdd = () => {
     createRef.current.title = "新增";
     createRef.current.type = DATA_TYPE.ADD;
-    createRef.current.data =[];
+    createRef.current.data = undefined;
     setShowModal(true);
   };
 
@@ -58,7 +58,7 @@ function List() {
   };
 
   // 提交
-  const onSubmit = async (data: DataType, form?: DataType) => {
+  const onSubmit = async (data?: DataType | undefined, form?: DataType) => {
     if (createRef.current.type === "ADD") {
     }
     let tempData = [...lists];
@@ -69,6 +69,7 @@ function List() {
         }
         break;
       case DATA_TYPE.EDIT:
+        if(data)
         tempData.forEach((i, index, arr) => {
           if (i.id === data.id && form) {
             arr[index] = form;
@@ -76,8 +77,11 @@ function List() {
         });
         break;
       case DATA_TYPE.DELETE:
-        const temp = tempData.filter((i) => i.id !== data.id);
-        tempData = [...temp];
+        if(data) {
+          const temp = tempData.filter((i) => i.id !== data.id);
+          tempData = [...temp];
+        }
+        
     }
     await dispatch(GetProducts(tempData));
     console.log(tempData);
@@ -169,7 +173,7 @@ function List() {
             {showModal && (
               <Modals
                 onCancel={() => setShowModal(false)}
-                onSubmit={(data, form) => onSubmit(data, form)}
+                onSubmit={(data, form) => onSubmit(data ? data : undefined, form)}
                 type={createRef.current.type}
                 title={createRef.current.title}
                 data={createRef.current.data}

@@ -4,7 +4,7 @@ import { DataType, DATA_TYPE } from "./data";
 export interface IProps {
   title: string;
   type: DATA_TYPE;
-  data?: DataType | undefined;
+  data?: DataType | undefined ;
   onCancel:() => void;
   onSubmit:(data?:DataType, form?: DataType) => void;
 }
