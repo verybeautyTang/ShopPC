@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { DataType, DATA_TYPE } from "./data";
 
 export interface IProps {
@@ -12,16 +12,18 @@ export interface IProps {
 export default function Modals(props: IProps) {
   const { title, type, data, onCancel, onSubmit } = props;
 
+  const modalRef = useRef<DataType>({
+    name: "",
+    size: "",
+    remark: "",
+  });
+
   const onClick =() => {
 
-    const name = (document.getElementById('name') as HTMLInputElement);
-    const remark = (document.getElementById('remark')as HTMLInputElement);
-    const size = (document.getElementById('size') as HTMLInputElement);
-
     onSubmit(data, {
-        name: name ?.value,
-        remark: remark?.value,
-        size: size?.value,
+        name: modalRef.current.name,
+        remark: modalRef.current.remark,
+        size: modalRef.current.size,
     })
   }
 
@@ -43,7 +45,7 @@ export default function Modals(props: IProps) {
                       确定删除{data?.name}这条数据嘛？
                     </p>
                   ) : (
-                    <form className="mb-6" id="form">
+                    <form className="mb-6" id="form" >
                       <div className="flex flex-col mb-4">
                         <label
                           className="mb-2 uppercase text-grey-darkest"
@@ -57,6 +59,7 @@ export default function Modals(props: IProps) {
                           id="name"
                           required
                           defaultValue={data?.name}
+                          onChange={(e) => modalRef.current.name = e.target.value}
                         />
                       </div>
                       <div className="flex flex-col mb-4">
@@ -72,6 +75,7 @@ export default function Modals(props: IProps) {
                           name="size"
                           id="size"
                           defaultValue={data?.size}
+                          onChange={(e) => modalRef.current.size = e.target.value}
                         />
                       </div>
                       <div className="flex flex-col mb-4">
@@ -87,6 +91,7 @@ export default function Modals(props: IProps) {
                           id="remark"
                           required
                           defaultValue={data?.remark}
+                          onChange={(e) => modalRef.current.remark = e.target.value}
                         />
                       </div>
                     </form>
